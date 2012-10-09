@@ -1,0 +1,16 @@
+{block content}
+
+<ul>
+    <li n:foreach="$tasks as $task">
+        <span>{$task->name}</span>
+        <span>
+            {if $task->is_started}
+            <a n:href="stop $task->id">stop</a>
+            {else}
+            <a n:href="start $task->id">start</a>
+            {/if}
+        </span>
+    </li>
+</ul>
+
+<a n:href="add">Add task</a>
