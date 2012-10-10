@@ -1,0 +1,45 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+common:
+    parameters:
+
+    php:
+        date.timezone: Europe/Prague
+        # zlib.output_compression: yes
+
+    nette:
+        database:
+            dsn: 'mysql:host=localhost;dbname=phptasktimer'
+            user: root
+            password: toor
+
+        session:
+            expiration: 14 days
+
+        debugger:
+            strictMode: true
+            bar:
+                - @actionsPanel
+                - ImprovedContainerPanel
+
+
+    services:
+        taskModel: TaskModel
+
+        # debug panels
+        actionsPanel:
+            class: ActionsPanel
+            setup:
+                - addAction('Clear cache', [@actionsPanel, 'clearCache'], [@cacheStorage])
+                - runAction
+
+    factories:
+
+
+production < common:
+
+development < common:

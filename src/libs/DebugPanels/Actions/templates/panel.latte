@@ -1,0 +1,12 @@
+{block content}
+	{stylesheet $basePath.'/templates/style.css'}
+	<h1 id="nette-debug-action-panel-title">
+		<img n:src="{$basePath}/templates/logo.png" width="16" height="16" />
+		Actions
+	</h1>
+	<div id="nette-debug-actions-panel">
+        <table n:inner-foreach="$actions as $id => $action">
+            <tr class="action"><td class="action-name">{$action['name']}</td><td><a n:action-href="$id">run</a></td></tr>
+        </table>
+	</div>
+{/block}
