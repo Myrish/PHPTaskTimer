@@ -32,18 +32,42 @@ class TaskPresenter extends BasePresenter
         $this->redirect('list');
     }
 
+    public function handleRefresh()
+    {
+        if($this->isAjax())
+        {
+            $this->invalidateControl('tasklist');
+        }
+    }
+
     public function actionStart($id)
     {
         $this->taskModel->startTask($id);
 
-        $this->redirect('list');
+        if($this->isAjax())
+        {
+            $this->invalidateControl('tasklist');
+            $this->view = 'list';
+        }
+        else
+        {
+            $this->redirect('list');
+        }
     }
 
     public function actionStop($id)
     {
         $this->taskModel->stopTask($id);
 
-        $this->redirect('list');
+        if($this->isAjax())
+        {
+            $this->invalidateControl('tasklist');
+            $this->view = 'list';
+        }
+        else
+        {
+            $this->redirect('list');
+        }
     }
 
     public function renderAdd()

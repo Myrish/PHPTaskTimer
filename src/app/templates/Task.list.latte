@@ -1,17 +1,19 @@
 {block content}
 
+{snippet tasklist}
 <ul>
     <li n:foreach="$tasks as $task">
         <span>{$task->name}</span>
         <span>{$task->totalWorkTime|timeRep}</span>
         <span>
             {if $task->is_started}
-            <a n:href="stop $task->id">stop</a>
+            <a n:href="stop $task->id" class="ajax">stop</a>
             {else}
-            <a n:href="start $task->id">start</a>
+            <a n:href="start $task->id" class="ajax">start</a>
             {/if}
         </span>
     </li>
 </ul>
+{/snippet}
 
 <a n:href="add">Add task</a>
